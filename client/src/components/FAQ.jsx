@@ -14,30 +14,20 @@ export default function FAQ({ faqs = [] }) {
       <div className="container mx-auto max-w-4xl px-6">
 
         {/* Header Block */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="mb-16 text-center"
-        >
+        <div className="mb-16 text-center">
           <span className="text-sm uppercase tracking-[0.3em] text-primary font-bold">FAQ</span>
           <h2 className="mt-4 font-display font-black text-4xl sm:text-5xl lg:text-6xl leading-tight text-foreground">
          Everything You Need to Know
           </h2>
-        </motion.div>
+        </div>
 
         {/* Accordion Component */}
         <div className="space-y-4">
           {faqs.map((faq, index) => {
             const isOpen = activeIndex === index
             return (
-              <motion.div
+              <div
                 key={faq._id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
                 className={`bg-background border rounded-2xl px-6 transition-all duration-300 ${
                   isOpen ? "border-primary/50 shadow-soft" : "border-border/80"
                 }`}
@@ -72,7 +62,7 @@ export default function FAQ({ faqs = [] }) {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             )
           })}
         </div>

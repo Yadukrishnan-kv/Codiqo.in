@@ -123,13 +123,7 @@ export default function Contact({ settings }) {
         <div className="grid lg:grid-cols-12 gap-16 items-center">
 
           {/* Left Column: Contact details */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-5 text-left flex flex-col justify-between"
-          >
+          <div className="lg:col-span-5 text-left flex flex-col justify-between">
             <div>
               <span className="text-sm uppercase tracking-[0.3em] text-primary font-bold">Contact</span>
               <h2 className="mt-4 font-display font-black text-4xl sm:text-5xl lg:text-6xl leading-tight text-balance text-background">
@@ -165,14 +159,10 @@ export default function Contact({ settings }) {
                 </span>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: WhatsApp Redirect Card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.15 }}
             whileHover={{ y: -6, borderColor: "rgba(16, 185, 129, 0.4)", boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 25px rgba(16, 185, 129, 0.1)" }}
             className="lg:col-span-7 bg-gradient-to-br from-emerald-950/85 via-slate-950/95 to-emerald-950/40 border border-emerald-500/20 shadow-[0_15px_30px_-15px_rgba(0,0,0,0.8)] rounded-[32px] p-8 lg:p-12 flex flex-col justify-between min-h-[360px] relative overflow-hidden text-left transition-colors duration-300"
           >

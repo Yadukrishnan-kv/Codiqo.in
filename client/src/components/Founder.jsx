@@ -48,29 +48,17 @@ export default function Founder({ founder }) {
 
       <div className="container mx-auto max-w-7xl px-6 relative z-10">
         {/* Badge Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="flex justify-center mb-6"
-        >
+        <div className="flex justify-center mb-6">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card/60 backdrop-blur text-xs sm:text-sm text-muted-foreground">
             <Sparkles className="w-4 h-4 text-primary" />
             <span>Behind Codiqo</span>
           </span>
-        </motion.div>
+        </div>
 
         {/* Content Layout Grid */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           {/* Left Column: Visual initials graphic */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
-            className="lg:col-span-5 relative w-full aspect-square max-w-[400px] mx-auto"
-          >
+          <div className="lg:col-span-5 relative w-full aspect-square max-w-[400px] mx-auto">
             {/* Glowing Box */}
             <div className="relative w-full h-full rounded-[32px] bg-foreground text-background overflow-hidden shadow-elegant border border-border/40">
               {/* Internal neon blurs */}
@@ -131,41 +119,23 @@ export default function Founder({ founder }) {
                 <span>{establishedLabel}</span>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Narrative Biography */}
           <div className="lg:col-span-7 text-left">
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7 }}
-              className="font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight text-foreground text-balance"
-            >
+            <h2 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight text-foreground text-balance">
               {name.split(' ')[0]}{' '}
               <span className="gradient-text">{name.split(' ').slice(1).join(' ')}</span>
-            </motion.h2>
+            </h2>
 
             {/* Paragraph Description */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-8 space-y-6 text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl"
-            >
+            <div className="mt-8 space-y-6 text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl">
               <p>{bioParagraph1}</p>
               {bioParagraph2 && <p>{bioParagraph2}</p>}
-            </motion.div>
+            </div>
 
             {/* Sub Highlights grid */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-xl"
-            >
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-xl">
               {highlights.map((highlight) => (
                 <div
                   key={highlight.label}
@@ -182,16 +152,10 @@ export default function Founder({ founder }) {
                   </div>
                 </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Quick Actions Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-10 flex flex-wrap items-center gap-4"
-            >
+            <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href={primaryCtaHref}
                 className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-foreground text-background font-semibold hover:bg-primary hover:text-primary-foreground hover:shadow-glow transition-all duration-300"
@@ -205,7 +169,7 @@ export default function Founder({ founder }) {
               >
                 {secondaryCtaLabel}
               </a>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

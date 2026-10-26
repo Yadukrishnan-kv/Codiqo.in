@@ -13,13 +13,7 @@ export default function Services({ main = [], sub = [] }) {
 
       <div className="container mx-auto max-w-7xl px-6">
         {/* Header Block */}
-        <m.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7 }}
-          className="max-w-3xl mb-20 text-left"
-        >
+        <div className="max-w-3xl mb-20 text-left">
           <span className="text-sm uppercase tracking-[0.3em] text-primary font-bold">
             Services
           </span>
@@ -32,20 +26,16 @@ export default function Services({ main = [], sub = [] }) {
             help businesses attract customers, build trust, and grow online with
             confidence.{" "}
           </p>
-        </m.div>
+        </div>
 
         {/* Main Services Grid */}
         <div className="space-y-8">
-          {main.map((service, index) => {
+          {main.map((service) => {
             const Icon = ICON_OPTIONS[service.icon]
             return (
               <m.article
                 key={service._id}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
                 whileTap={{ scale: 0.98 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
                 className="grid lg:grid-cols-12 gap-8 items-center bg-surface border border-border/80 rounded-[32px] p-8 lg:p-12 hover:shadow-elegant transition-all duration-500 group"
               >
                 <div className="lg:col-span-12 flex flex-col text-left">
@@ -82,16 +72,12 @@ export default function Services({ main = [], sub = [] }) {
 
         {/* Sub Services Grid */}
         <div className="grid md:grid-cols-3 gap-6 mt-8">
-          {sub.map((service, index) => {
+          {sub.map((service) => {
             const Icon = ICON_OPTIONS[service.icon]
             return (
               <m.div
                 key={service._id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
                 whileTap={{ scale: 0.98 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-foreground text-background rounded-[32px] p-8 lg:p-10 hover:bg-primary hover:text-primary-foreground transition-colors duration-500 group text-left flex flex-col justify-between"
               >
                 <div>

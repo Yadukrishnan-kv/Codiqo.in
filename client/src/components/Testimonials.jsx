@@ -1,5 +1,4 @@
 import React from 'react'
-import { motion } from 'framer-motion'
 import { Star } from 'lucide-react'
 import { resolveAssetUrl } from '../utils/resolveAssetUrl'
 
@@ -9,28 +8,18 @@ export default function Testimonials({ testimonials = [] }) {
       <div className="container mx-auto max-w-7xl px-6">
 
         {/* Header Block */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="max-w-3xl mb-16 text-left"
-        >
+        <div className="max-w-3xl mb-16 text-left">
           <span className="text-sm uppercase tracking-[0.3em] text-primary font-bold">Testimonials</span>
           <h2 className="mt-4 font-display font-black text-4xl sm:text-5xl lg:text-6xl leading-tight text-foreground">
             Words from founders.
           </h2>
-        </motion.div>
+        </div>
 
         {/* Testimonials Cards Grid */}
         <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t, index) => (
-            <motion.figure
+          {testimonials.map((t) => (
+            <figure
               key={t._id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
               className="bg-surface border border-border/80 rounded-[32px] p-8 flex flex-col justify-between hover:shadow-elegant transition-all duration-500 text-left"
             >
               <div>
@@ -68,7 +57,7 @@ export default function Testimonials({ testimonials = [] }) {
                   </div>
                 </div>
               </figcaption>
-            </motion.figure>
+            </figure>
           ))}
         </div>
       </div>

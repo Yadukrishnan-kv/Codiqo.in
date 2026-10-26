@@ -1,34 +1,57 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from '../pages/public/Home'
-import Login from '../pages/admin/Login'
-import Dashboard from '../pages/admin/Dashboard'
-import HeroPage from '../pages/admin/HeroPage'
-import WorkPage from '../pages/admin/WorkPage'
-import ServicesPage from '../pages/admin/ServicesPage'
-import ProcessPage from '../pages/admin/ProcessPage'
-import WhyUsPage from '../pages/admin/WhyUsPage'
-import TestimonialsPage from '../pages/admin/TestimonialsPage'
-import FounderPage from '../pages/admin/FounderPage'
-import FaqPage from '../pages/admin/FaqPage'
-import NavbarPage from '../pages/admin/NavbarPage'
-import BrandsPage from '../pages/admin/BrandsPage'
-import SiteSettingsPage from '../pages/admin/SiteSettingsPage'
-import InvoicesPage from '../pages/admin/InvoicesPage'
-import AdminUsersPage from '../pages/admin/AdminUsersPage'
-import AdminLayout from '../components/admin/layout/AdminLayout'
 import ProtectedRoute from '../components/admin/layout/ProtectedRoute'
 import RequireRole from '../components/admin/layout/RequireRole'
+
+const Login = lazy(() => import('../pages/admin/Login'))
+const Dashboard = lazy(() => import('../pages/admin/Dashboard'))
+const HeroPage = lazy(() => import('../pages/admin/HeroPage'))
+const WorkPage = lazy(() => import('../pages/admin/WorkPage'))
+const ServicesPage = lazy(() => import('../pages/admin/ServicesPage'))
+const ProcessPage = lazy(() => import('../pages/admin/ProcessPage'))
+const WhyUsPage = lazy(() => import('../pages/admin/WhyUsPage'))
+const TestimonialsPage = lazy(() => import('../pages/admin/TestimonialsPage'))
+const FounderPage = lazy(() => import('../pages/admin/FounderPage'))
+const FaqPage = lazy(() => import('../pages/admin/FaqPage'))
+const NavbarPage = lazy(() => import('../pages/admin/NavbarPage'))
+const BrandsPage = lazy(() => import('../pages/admin/BrandsPage'))
+const SiteSettingsPage = lazy(() => import('../pages/admin/SiteSettingsPage'))
+const InvoicesPage = lazy(() => import('../pages/admin/InvoicesPage'))
+const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage'))
+const AdminLayout = lazy(() => import('../components/admin/layout/AdminLayout'))
+
+function AdminFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-background text-muted-foreground text-sm">
+      Loading…
+    </div>
+  )
+}
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
 
-      <Route path="/admin/login" element={<Login />} />
+      <Route
+        path="/admin/login"
+        element={
+          <Suspense fallback={<AdminFallback />}>
+            <Login />
+          </Suspense>
+        }
+      />
 
       <Route element={<ProtectedRoute />}>
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={
+            <Suspense fallback={<AdminFallback />}>
+              <AdminLayout />
+            </Suspense>
+          }
+        >
           <Route index element={<Dashboard />} />
           <Route path="hero" element={<HeroPage />} />
           <Route path="services" element={<ServicesPage />} />

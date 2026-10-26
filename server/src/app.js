@@ -4,6 +4,7 @@ import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import rateLimit from 'express-rate-limit'
 import mongoSanitize from 'express-mongo-sanitize'
@@ -26,6 +27,7 @@ if (env.isProduction) {
 }
 
 app.use(helmet())
+app.use(compression())
 app.use(
   cors({
     origin: env.clientOrigin,
@@ -54,7 +56,15 @@ app.use('/uploads', (req, res, next) => {
   res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
   next()
 })
-app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')))
+// Filenames are random UUIDs minted on every upload, so a cached file can
+// never go stale under a reused name — safe to cache for a year.
+app.use(
+  '/uploads',
+  express.static(path.join(__dirname, '..', 'uploads'), {
+    maxAge: '365d',
+    immutable: true,
+  })
+)
 
 app.use('/api/v1', routes)
 

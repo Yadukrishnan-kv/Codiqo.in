@@ -9,13 +9,7 @@ export default function Work({ projects = [] }) {
       <div className="container mx-auto max-w-7xl px-6">
 
         {/* Header Block */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 text-left"
-        >
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 text-left">
           <div>
             <span className="text-sm uppercase tracking-[0.3em] text-primary font-bold">Selected Work</span>
             <h2 className="mt-4 font-display font-black text-4xl sm:text-5xl lg:text-6xl leading-tight text-foreground">
@@ -23,21 +17,17 @@ export default function Work({ projects = [] }) {
             </h2>
           </div>
 
-        </motion.div>
+        </div>
 
         {/* Portfolio Cards Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.a
               key={project._id}
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
               whileTap={{ scale: 0.98 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: (index % 3) * 0.1 }}
               className="group relative rounded-[32px] overflow-hidden block border border-border/40 bg-surface shadow-soft"
             >
               {/* Representational Visual Canvas — same height on every card */}
