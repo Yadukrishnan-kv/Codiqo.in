@@ -128,23 +128,19 @@ export default function Hero({ hero }) {
             </div>
           </div>
 
-          {/* Floating Widget 1: Performance */}
+          {/* Widget 1: Performance */}
           <motion.div
-            animate={{ y: [0, -12, 0] }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="absolute left-2 top-6 sm:-left-6 sm:top-12 bg-background/90 backdrop-blur border border-border rounded-2xl p-3 sm:p-4 shadow-soft cursor-pointer"
           >
             <div className="text-[10px] text-muted-foreground uppercase tracking-widest whitespace-nowrap">
               {widgetTopLeft}
             </div>
           </motion.div>
-           <motion.div
-            animate={{ y: [0, 12, 0] }}
+          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="absolute left-2 bottom-4 sm:-left-6 sm:bottom-12 bg-foreground text-background rounded-2xl p-3 sm:p-4 shadow-glow cursor-pointer"
           >
             <div className="text-[10px] text-background/80 uppercase tracking-widest whitespace-nowrap">
@@ -152,11 +148,9 @@ export default function Hero({ hero }) {
             </div>
           </motion.div>
 
-            <motion.div
-            animate={{ y: [0, -12, 0] }}
+          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="absolute right-2 top-6 sm:-right-6 sm:top-12 bg-foreground text-background rounded-2xl p-3 sm:p-4 shadow-glow cursor-pointer"
           >
             <div className="text-[10px] text-background/80 uppercase tracking-widest whitespace-nowrap">
@@ -164,17 +158,10 @@ export default function Hero({ hero }) {
             </div>
           </motion.div>
 
-          {/* Floating Widget 2: SEO */}
+          {/* Widget 2: SEO */}
           <motion.div
-            animate={{ y: [0, 12, 0] }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1,
-            }}
             className="absolute right-2 bottom-4 sm:-right-4 sm:bottom-12 bg-background/90 backdrop-blur border border-border rounded-2xl p-3 sm:p-4 shadow-soft cursor-pointer"
           >
             <div className="text-[10px] text-muted-foreground uppercase tracking-widest whitespace-nowrap">

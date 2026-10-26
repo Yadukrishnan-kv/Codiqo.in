@@ -48,7 +48,9 @@ export default function Home() {
 
       {visibility.logoTicker && <LogoTicker brands={brands} />}
 
-      {visibility.services !== false && <Services main={services.main} sub={services.sub} />}
+      {visibility.services !== false && (
+        <Services main={services.main} sub={services.sub} settings={settings} />
+      )}
 
       {visibility.process !== false && <Process steps={processSteps} />}
 

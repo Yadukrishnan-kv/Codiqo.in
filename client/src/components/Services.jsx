@@ -1,8 +1,17 @@
 import React from "react";
 import { motion as m } from "framer-motion";
+import { Check, ArrowUpRight } from "lucide-react";
 import { ICON_OPTIONS } from "../utils/iconOptions";
+import { resolveAssetUrl } from "../utils/resolveAssetUrl";
 
-export default function Services({ main = [], sub = [] }) {
+function formatPrice(price) {
+  return new Intl.NumberFormat('en-IN').format(price || 0)
+}
+
+export default function Services({ main = [], sub = [], settings = {} }) {
+  const services = [...main, ...sub]
+  const whatsappNumber = settings?.whatsappNumber || ''
+
   return (
     <section id="services" className="py-24 lg:py-40 relative bg-background">
       {/* Decorative Blur Background Blob */}
@@ -13,7 +22,7 @@ export default function Services({ main = [], sub = [] }) {
 
       <div className="container mx-auto max-w-7xl px-6">
         {/* Header Block */}
-        <div className="max-w-3xl mb-20 text-left">
+        <div className="max-w-3xl mb-16 text-left">
           <span className="text-sm uppercase tracking-[0.3em] text-primary font-bold">
             Services
           </span>
@@ -28,68 +37,78 @@ export default function Services({ main = [], sub = [] }) {
           </p>
         </div>
 
-        {/* Main Services Grid */}
-        <div className="space-y-8">
-          {main.map((service) => {
+        {/* Services Pricing Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service) => {
             const Icon = ICON_OPTIONS[service.icon]
-            return (
-              <m.article
-                key={service._id}
-                whileTap={{ scale: 0.98 }}
-                className="grid lg:grid-cols-12 gap-8 items-center bg-surface border border-border/80 rounded-[32px] p-8 lg:p-12 hover:shadow-elegant transition-all duration-500 group"
-              >
-                <div className="lg:col-span-12 flex flex-col text-left">
-                  {/* Icon wrapper */}
-                  <div className="inline-flex w-14 h-14 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                    {Icon && <Icon className="w-7 h-7" />}
-                  </div>
+            const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+              `Hi, I'm interested in the ${service.title} package.`
+            )}`
 
-                  {/* Text titles */}
-                  <h3 className="font-display text-3xl lg:text-4xl font-bold text-foreground mb-4">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-8 max-w-4xl">
-                    {service.description}
-                  </p>
-
-                  {/* Bullets lists */}
-                  <ul className="grid sm:grid-cols-3 gap-4 border-t border-border/40 pt-6">
-                    {service.bullets.map((bullet) => (
-                      <li
-                        key={bullet}
-                        className="flex items-center gap-3 text-sm font-semibold text-foreground"
-                      >
-                        <span className="w-2 h-2 rounded-full bg-primary" />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </m.article>
-            )
-          })}
-        </div>
-
-        {/* Sub Services Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mt-8">
-          {sub.map((service) => {
-            const Icon = ICON_OPTIONS[service.icon]
             return (
               <m.div
                 key={service._id}
                 whileTap={{ scale: 0.98 }}
-                className="bg-foreground text-background rounded-[32px] p-8 lg:p-10 hover:bg-primary hover:text-primary-foreground transition-colors duration-500 group text-left flex flex-col justify-between"
+                className="bg-surface border border-border/80 rounded-[32px] overflow-hidden flex flex-col hover:shadow-elegant transition-all duration-500"
               >
-                <div>
-                  <div className="w-12 h-12 rounded-2xl bg-background/10 flex items-center justify-center text-primary group-hover:text-primary-foreground group-hover:bg-background/20 transition-colors duration-300 mb-6">
-                    {Icon && <Icon className="w-6 h-6 text-primary group-hover:text-background" />}
-                  </div>
-                  <h3 className="font-display text-xl font-bold mb-3">
+                {/* Card Visual */}
+                <div className="relative aspect-video overflow-hidden bg-primary/5 flex items-center justify-center">
+                  {service.imageUrl ? (
+                    <img
+                      src={resolveAssetUrl(service.imageUrl)}
+                      alt={service.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    Icon && <Icon className="w-12 h-12 text-primary" />
+                  )}
+                </div>
+
+                {/* Card Content */}
+                <div className="p-6 lg:p-8 flex flex-col flex-1 text-left">
+                  {service.category && (
+                    <span className="inline-block w-fit mb-3 px-3 py-1 rounded-full bg-muted text-[10px] uppercase tracking-widest font-bold text-muted-foreground">
+                      {service.category}
+                    </span>
+                  )}
+
+                  <h3 className="font-display text-xl sm:text-2xl font-black text-foreground mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-background/70 group-hover:text-primary-foreground/80 text-sm leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-6">
                     {service.description}
                   </p>
+
+                  <div className="flex items-baseline gap-2 mb-6">
+                    <span className="font-display text-3xl sm:text-4xl font-black text-foreground">
+                      ₹{formatPrice(service.price)}
+                    </span>
+                    {service.priceNote && (
+                      <span className="text-xs text-muted-foreground">{service.priceNote}</span>
+                    )}
+                  </div>
+
+                  {service.bullets?.length > 0 && (
+                    <ul className="space-y-2.5 pt-6 mb-8 border-t border-border/60 flex-1">
+                      {service.bullets.map((bullet) => (
+                        <li key={bullet} className="flex items-center gap-2.5 text-sm text-foreground">
+                          <Check className="w-4 h-4 text-primary shrink-0" />
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group mt-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-foreground text-background font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  >
+                    Enquire on WhatsApp
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                  </a>
                 </div>
               </m.div>
             )

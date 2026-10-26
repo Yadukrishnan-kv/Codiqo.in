@@ -16,15 +16,17 @@ export default function WhyUs({ reasons = [] }) {
           </h2>
         </div>
 
-        {/* Clean Border Grid Layout */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border/40 rounded-[32px] overflow-hidden border border-border/40 shadow-soft">
-          {reasons.map((reason) => {
+        {/* Mobile: each card sticks as you scroll, the next one slides up over it.
+            From md up: clean hairline-border grid, no stacking. */}
+        <div className="flex flex-col gap-10 md:gap-0 md:grid md:grid-cols-2 md:gap-px md:bg-border/40 md:rounded-[32px] md:overflow-hidden md:border md:border-border/40 md:shadow-soft lg:grid-cols-3">
+          {reasons.map((reason, index) => {
             const Icon = ICON_OPTIONS[reason.icon]
             return (
               <motion.div
                 key={reason._id}
-                whileTap={{ scale: 0.98 }}
-                className="bg-background p-8 lg:p-12 hover:bg-foreground hover:text-background transition-all duration-500 group cursor-default text-left flex flex-col justify-between min-h-[250px]"
+                whileTap={{ scale: 1.02 }}
+                style={{ top: `${112 + index * 16}px`, zIndex: index + 1 }}
+                className="sticky md:static bg-background rounded-2xl border border-border/80 shadow-xl md:rounded-none md:border-0 md:shadow-none p-8 lg:p-12 hover:bg-foreground hover:text-background transition-all duration-500 group cursor-default text-left flex flex-col justify-between min-h-[250px]"
               >
                 <div>
                   {/* Icon */}
