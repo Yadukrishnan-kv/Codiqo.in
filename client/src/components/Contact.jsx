@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Mail, MapPin, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 // Custom SVG WhatsApp icon for premium visual style
 const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
@@ -28,7 +28,7 @@ const contactSchema = z.object({
 */
 
 export default function Contact({ settings }) {
-  const { contactEmail, contactLocation, whatsappNumber, whatsappMessage } = settings
+  const { whatsappNumber, whatsappMessage } = settings
   const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`
 
   /*
@@ -132,32 +132,6 @@ export default function Contact({ settings }) {
               <p className="mt-6 text-background/70 text-lg leading-relaxed max-w-md">
                Let's discuss how we can bring your ideas to life. Book a quick call with our team, and we'll guide you through the next steps.
               </p>
-            </div>
-
-            {/* Visual Action Link items */}
-            <div className="mt-12 space-y-6">
-
-              {/* Email item */}
-              <a href={`mailto:${contactEmail}`} className="flex items-center gap-4 group active:scale-95 transition-transform duration-200">
-                <span className="w-12 h-12 rounded-full bg-background/10 flex items-center justify-center text-background group-hover:bg-primary group-hover:text-primary-foreground active:bg-primary active:text-primary-foreground transition-colors duration-300">
-                  <Mail className="w-5 h-5" />
-                </span>
-                <span className="break-all">
-                  <div className="text-[10px] text-background/50 uppercase tracking-widest font-semibold">Email</div>
-                  <div className="font-display text-lg font-bold text-background">{contactEmail}</div>
-                </span>
-              </a>
-
-              {/* Based In Location item */}
-              <div className="flex items-center gap-4 cursor-default">
-                <span className="w-12 h-12 rounded-full bg-background/10 flex items-center justify-center text-background">
-                  <MapPin className="w-5 h-5" />
-                </span>
-                <span>
-                  <div className="text-[10px] text-background/50 uppercase tracking-widest font-semibold">Based in</div>
-                  <div className="font-display text-lg font-bold text-background">{contactLocation}</div>
-                </span>
-              </div>
             </div>
           </div>
 
