@@ -109,7 +109,7 @@ export default function Hero({ hero }) {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="lg:col-span-5 relative w-full aspect-square max-w-[480px] lg:max-w-none mx-auto lg:ml-auto px-2 sm:px-0"
+          className="hidden lg:block lg:col-span-5 relative w-full aspect-square max-w-[480px] lg:max-w-none mx-auto lg:ml-auto px-2 sm:px-0"
         >
           {/* Main Visual Display Card */}
           <div className="relative w-full h-full rounded-[32px] overflow-hidden shadow-elegant border border-border/40 bg-surface flex items-center justify-center">
