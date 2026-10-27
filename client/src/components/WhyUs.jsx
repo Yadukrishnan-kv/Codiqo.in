@@ -18,7 +18,7 @@ export default function WhyUs({ reasons = [] }) {
 
         {/* Mobile: each card sticks as you scroll, the next one slides up over it.
             From md up: clean hairline-border grid, no stacking. */}
-        <div className="flex flex-col gap-10 md:gap-0 md:grid md:grid-cols-2 md:gap-px md:bg-border/40 md:rounded-[32px] md:overflow-hidden md:border md:border-border/40 md:shadow-soft lg:grid-cols-3">
+        <div className="flex flex-col gap-5 md:gap-0 md:grid md:grid-cols-2 md:gap-px md:bg-border/40 md:rounded-[32px] md:overflow-hidden md:border md:border-border/40 md:shadow-soft lg:grid-cols-3">
           {reasons.map((reason, index) => {
             const Icon = ICON_OPTIONS[reason.icon]
             return (

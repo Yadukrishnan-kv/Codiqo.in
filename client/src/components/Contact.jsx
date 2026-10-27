@@ -194,7 +194,7 @@ export default function Contact({ settings }) {
                 className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4.5 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold text-base hover:from-emerald-400 hover:to-green-500 shadow-[0_4px_20px_rgba(16,185,129,0.3)] hover:shadow-[0_4px_30px_rgba(16,185,129,0.6)] active:scale-95 transition-all duration-300 cursor-pointer"
               >
                 <WhatsAppIcon className="w-5 h-5 fill-current" />
-                <span>Message on WhatsApp</span>
+                <span>Let's Get Started</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
             </div>
